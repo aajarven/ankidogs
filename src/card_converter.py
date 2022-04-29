@@ -7,8 +7,14 @@ class CardConverter:
     """
 
     fields = [
+        "image_url",
         "breed_name",
+        "origin_country",
         "breed_group",
+        "use",
+        "personality",
+        "weight",
+        "height",
     ]
 
     @staticmethod

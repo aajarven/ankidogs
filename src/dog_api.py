@@ -59,3 +59,33 @@ class Breed:
     @property
     def breed_group(self):
         return self._get("breed_group")
+
+    @property
+    def image_url(self):
+        if "image" in self.data:
+            return self.data["image"]["url"]
+        return ""
+
+    @property
+    def origin_country(self):
+        return ""
+
+    @property
+    def use(self):
+        return self._get("bred_for")
+
+    @property
+    def personality(self):
+        return self._get("temperament")
+
+    @property
+    def weight(self):
+        if "weight" in self.data:
+            return "{} kg".format(self.data["weight"]["metric"])
+        return ""
+
+    @property
+    def height(self):
+        if "height" in self.data:
+            return "{} cm".format(self.data["height"]["metric"])
+        return ""
