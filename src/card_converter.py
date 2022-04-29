@@ -9,6 +9,8 @@ class CardConverter:
     fields = [
         "image_url",
         "breed_name",
+        "english_name",
+        "alternative_names",
         "origin_country",
         "breed_group",
         "use",

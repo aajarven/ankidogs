@@ -54,7 +54,15 @@ class Breed:
 
     @property
     def breed_name(self):
+        return ""
+
+    @property
+    def english_name(self):
         return self._get("name")
+
+    @property
+    def alternative_names(self):
+        return ""
 
     @property
     def breed_group(self):
