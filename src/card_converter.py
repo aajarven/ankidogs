@@ -6,6 +6,11 @@ class CardConverter:
     Converter from dog breed data to Anki card info in CSV format.
     """
 
+    fields = [
+        "breed_name",
+        "breed_group",
+    ]
+
     @staticmethod
     def _breed_group(breed):
         if "breed_group" in breed:
@@ -18,16 +23,11 @@ class CardConverter:
         """
         with open(outfile, "w", newline="") as csvfile:
             writer = csv.writer(csvfile, delimiter=";")
-            writer.writerow(
-                [
-                    "breed_name",
-                    "breed_group",
-                ]
-            )
+
+            csvfile.write("# ")
+            writer.writerow(self.fields)
+
             for breed in breeds:
                 writer.writerow(
-                    [
-                        "# " + breed["name"],
-                        self._breed_group(breed)
-                    ]
+                    [getattr(breed, field) for field in self.fields]
                 )

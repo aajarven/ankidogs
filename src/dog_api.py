@@ -20,10 +20,42 @@ class DogAPI:
 
         :limit: Maximum number of breeds to return. Defaults to 999 (i.e.
                 significantly more than the size of the breed list).
-        :returns: Breed data as list of individual breed info dicts
+        :returns: Breed data as list of Breeds
         """
         r = requests.get(
             "https://api.thedogapi.com/v1/breeds",
             headers={"x-api-key": self.apikey}
             )
-        return r.json()
+        breed_data = r.json()
+        return [Breed(breed_dict) for breed_dict in breed_data]
+
+
+class Breed:
+    """
+    Representation for a dog breed
+    """
+    def __init__(self, breed_dict):
+        """
+        Create a new breed
+
+        :breed_dict: Breed information as a dict from thedogapi.com
+        """
+        self.data = breed_dict
+
+    def _get(self, key, default=""):
+        """
+        Return field value from breed data dict.
+
+        If field is not found, the default value is returned.
+        """
+        if key in self.data:
+            return self.data[key]
+        return default
+
+    @property
+    def breed_name(self):
+        return self._get("name")
+
+    @property
+    def breed_group(self):
+        return self._get("breed_group")
