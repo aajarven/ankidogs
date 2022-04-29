@@ -14,5 +14,7 @@ pip install -r requirements.txt
 ## Usage
 
 ```
-python ankidogs.py
+python ankidogs.py API_KEY
 ```
+
+An API key must be obtained from https://thedogapi.com.
